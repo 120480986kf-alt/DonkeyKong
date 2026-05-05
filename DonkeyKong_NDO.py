@@ -6,9 +6,11 @@
 # ============================================================
 
 # --- Importations des bibliothèques ---
-import pygame, sys
+import pygame, sys, os
 from pygame.locals import *
 import random
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # --- Définition des couleurs (Rouge, Vert, Bleu) ---
 NOIR    = (0, 0, 0)
@@ -105,86 +107,86 @@ confVit  = []
 confCoul = []
 
 # --- Chargement de toutes les images du jeu ---
-imgTitre    = pygame.image.load("title-screen.png")
-imgDebut    = pygame.image.load("start.png")
-imgVictoire = pygame.image.load("win-screen.png")
-imgGameOver = pygame.image.load("game-over-screen.png")
+imgTitre    = pygame.image.load("assets/title-screen.png")
+imgDebut    = pygame.image.load("assets/start.png")
+imgVictoire = pygame.image.load("assets/win-screen.png")
+imgGameOver = pygame.image.load("assets/game-over-screen.png")
 
-imgCurseur  = pygame.image.load("select-icon.png")
-imgVie      = pygame.image.load("mario-life.png")
+imgCurseur  = pygame.image.load("assets/select-icon.png")
+imgVie      = pygame.image.load("assets/mario-life.png")
 
-imgAvecEch  = pygame.image.load("withLadder.png")
-plat0 = pygame.image.load("platform0.png")
-plat1 = pygame.image.load("platform1.png")
-plat2 = pygame.image.load("platform2.png")
-plat3 = pygame.image.load("platform3.png")
-plat4 = pygame.image.load("platform4.png")
-plat5 = pygame.image.load("platform5.png")
-plat6 = pygame.image.load("platform6.png")
+imgAvecEch  = pygame.image.load("assets/withLadder.png")
+plat0 = pygame.image.load("assets/platform0.png")
+plat1 = pygame.image.load("assets/platform1.png")
+plat2 = pygame.image.load("assets/platform2.png")
+plat3 = pygame.image.load("assets/platform3.png")
+plat4 = pygame.image.load("assets/platform4.png")
+plat5 = pygame.image.load("assets/platform5.png")
+plat6 = pygame.image.load("assets/platform6.png")
 plateformes = [plat0, plat1, plat2, plat3, plat4, plat5, plat6]
-imgNiveau   = pygame.image.load("level.png")
+imgNiveau   = pygame.image.load("assets/level.png")
 
 # Chiffres bleus (numéro de niveau)
-bleu0 = pygame.image.load("blue0.png")
-bleu1 = pygame.image.load("blue1.png")
-bleu2 = pygame.image.load("blue2.png")
-bleu3 = pygame.image.load("blue3.png")
-bleu4 = pygame.image.load("blue4.png")
-bleu5 = pygame.image.load("blue5.png")
+bleu0 = pygame.image.load("assets/blue0.png")
+bleu1 = pygame.image.load("assets/blue1.png")
+bleu2 = pygame.image.load("assets/blue2.png")
+bleu3 = pygame.image.load("assets/blue3.png")
+bleu4 = pygame.image.load("assets/blue4.png")
+bleu5 = pygame.image.load("assets/blue5.png")
 chiffresBleus = [bleu0, bleu1, bleu2, bleu3, bleu4, bleu5]
 
 # Chiffres blancs (score)
-blanc0 = pygame.image.load("white0.png")
-blanc1 = pygame.image.load("white1.png")
-blanc2 = pygame.image.load("white2.png")
-blanc3 = pygame.image.load("white3.png")
-blanc4 = pygame.image.load("white4.png")
-blanc5 = pygame.image.load("white5.png")
-blanc6 = pygame.image.load("white6.png")
-blanc7 = pygame.image.load("white7.png")
-blanc8 = pygame.image.load("white8.png")
-blanc9 = pygame.image.load("white9.png")
+blanc0 = pygame.image.load("assets/white0.png")
+blanc1 = pygame.image.load("assets/white1.png")
+blanc2 = pygame.image.load("assets/white2.png")
+blanc3 = pygame.image.load("assets/white3.png")
+blanc4 = pygame.image.load("assets/white4.png")
+blanc5 = pygame.image.load("assets/white5.png")
+blanc6 = pygame.image.load("assets/white6.png")
+blanc7 = pygame.image.load("assets/white7.png")
+blanc8 = pygame.image.load("assets/white8.png")
+blanc9 = pygame.image.load("assets/white9.png")
 chiffresBlancs = [blanc0, blanc1, blanc2, blanc3, blanc4, blanc5, blanc6, blanc7, blanc8, blanc9]
 
 # Sprites de Mario (déplacement, saut, escalade, mort)
-mGauche  = pygame.image.load("mario-left.png")
-mDroite  = pygame.image.load("mario-right.png")
-mCourseG = pygame.image.load("run-left.png")
-mCourseD = pygame.image.load("run-right.png")
-mSautG   = pygame.image.load("jump-left.png")
-mSautD   = pygame.image.load("jump-right.png")
-mEchelle1 = pygame.image.load("marioClimb1.png")
-mEchelle2 = pygame.image.load("marioClimb2.png")
-mMort     = pygame.image.load("dead.png")
+mGauche  = pygame.image.load("assets/mario-left.png")
+mDroite  = pygame.image.load("assets/mario-right.png")
+mCourseG = pygame.image.load("assets/run-left.png")
+mCourseD = pygame.image.load("assets/run-right.png")
+mSautG   = pygame.image.load("assets/jump-left.png")
+mSautD   = pygame.image.load("assets/jump-right.png")
+mEchelle1 = pygame.image.load("assets/marioClimb1.png")
+mEchelle2 = pygame.image.load("assets/marioClimb2.png")
+mMort     = pygame.image.load("assets/dead.png")
 imgMario  = mDroite     # Image courante de Mario
 
 # Sprites de Pauline
-paulineAide  = pygame.image.load("pauline-help.png")
-paulineCalme = pygame.image.load("pauline-still.png")
+paulineAide  = pygame.image.load("assets/pauline-help.png")
+paulineCalme = pygame.image.load("assets/pauline-still.png")
 
 # Sprites de Donkey Kong
-dkMonte1  = pygame.image.load("DK_up1.png")
-dkMonte2  = pygame.image.load("DK_up2.png")
-dkVide1   = pygame.image.load("dkClimbEmpty1.png")
-dkVide2   = pygame.image.load("dkClimbEmpty2.png")
-dkFace    = pygame.image.load("dkForward.png")
-dkGauche  = pygame.image.load("dkLeft.png")
-dkDroite  = pygame.image.load("dkRight.png")
-dkDefaite = pygame.image.load("DK-defeat.png")
+dkMonte1  = pygame.image.load("assets/DK_up1.png")
+dkMonte2  = pygame.image.load("assets/DK_up2.png")
+dkVide1   = pygame.image.load("assets/dkClimbEmpty1.png")
+dkVide2   = pygame.image.load("assets/dkClimbEmpty2.png")
+dkFace    = pygame.image.load("assets/dkForward.png")
+dkGauche  = pygame.image.load("assets/dkLeft.png")
+dkDroite  = pygame.image.load("assets/dkRight.png")
+dkDefaite = pygame.image.load("assets/dk-defeat.png")
 imgDK     = dkFace      # Image courante de DK
 
 # Sprites des tonneaux
-pileTon  = pygame.image.load("barrel-stack.png")
-ton1     = pygame.image.load("barrel1.png")
-ton2     = pygame.image.load("barrel2.png")
-ton3     = pygame.image.load("barrel3.png")
-ton4     = pygame.image.load("barrel4.png")
+pileTon  = pygame.image.load("assets/barrel-stack.png")
+ton1     = pygame.image.load("assets/barrel1.png")
+ton2     = pygame.image.load("assets/barrel2.png")
+ton3     = pygame.image.load("assets/barrel3.png")
+ton4     = pygame.image.load("assets/barrel4.png")
 seqTon   = [ton1, ton2, ton3, ton4]   # Séquence d'animation du tonneau
 imgTon   = []                          # Image courante de chaque tonneau
 
 # Images des cœurs (vies)
-coeurBrise = pygame.image.load("broken-heart.png")
-coeurPlein = pygame.image.load("full-heart.png")
+coeurBrise = pygame.image.load("assets/broken-heart.png")
+coeurPlein = pygame.image.load("assets/full-heart.png")
 
 # --- Initialisation aléatoire des 400 confettis ---
 for i in range(0, 400):

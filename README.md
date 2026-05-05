@@ -39,62 +39,45 @@ Aide **Mario** à sauver **Pauline** kidnappée par Donkey Kong en grimpant jusq
 
 ## 🛠️ Installation
 
-### Étape 1 — Installer Python
+### Prérequis — Python 3.8+
 
-Vérifie si Python est déjà installé :
+Vérifie que Python est installé :
 ```bash
 python3 --version
 ```
 
-Si ce n'est pas le cas, télécharge-le sur **[python.org](https://www.python.org/downloads/)** (version 3.8 ou plus récente recommandée).
+Si ce n'est pas le cas, télécharge-le sur **[python.org](https://www.python.org/downloads/)**.
 
 > ✅ Compatible **Windows**, **macOS** et **Linux**
 
 ---
 
-### Étape 2 — Installer Pygame
+### Étape 1 — Cloner le projet
 
-Dans un terminal, tape :
 ```bash
-pip3 install pygame
+git clone https://github.com/120480986kf-alt/DonkeyKong
+cd DonkeyKong-1
 ```
 
-Pour vérifier que l'installation a bien fonctionné :
-```bash
-python3 -c "import pygame; print(pygame.version.ver)"
-```
-
-> Si `pip3` ne fonctionne pas, essaie :
-> ```bash
-> python3 -m pip install pygame
-> ```
+Ou télécharge le ZIP depuis le bouton vert **`Code`** en haut de la page, puis décompresse-le.
 
 ---
 
-### Étape 3 — Télécharger le projet
+### Étape 2 — Installer les dépendances
 
-**Option A – Cloner avec Git :**
 ```bash
-git clone https://github.com/120480986kf-alt/Donkey-kong-Game
-cd /CHEMIN/VERS/LE/PROJET/DonkeyKong
+pip3 install -r requirements.txt
 ```
 
-**Option B – Télécharger le ZIP :**
-1. Clique sur le bouton vert **`Code`** en haut de cette page
-2. Sélectionne **`Download ZIP`**
-3. Décompresse l'archive sur ton ordinateur
+> Si `pip3` ne fonctionne pas, essaie `python3 -m pip install -r requirements.txt`
 
 ---
 
 ## 🚀 Lancer le jeu
 
-Ouvre un terminal dans le dossier du projet et tape :
-
 ```bash
 python3 DonkeyKong_NDO.py
 ```
-
-> ⚠️ **Important** : reste bien dans le dossier `DonkeyKong/` pour que toutes les images soient trouvées.
 
 ### Depuis un éditeur de code
 
@@ -109,23 +92,24 @@ python3 DonkeyKong_NDO.py
 ## 📁 Structure du projet
 
 ```
-DonkeyKong/
+DonkeyKong-1/
 │
-├── DonkeyKong_KendraTam.py   ← Code source principal
+├── DonkeyKong_NDO.py         ← Code source principal
+├── requirements.txt          ← Dépendances Python
 ├── README.md                 ← Ce fichier
 │
-├── title-screen.png          ← Écran titre
-├── start.png                 ← Écran de démarrage
-├── win-screen.png            ← Écran de victoire
-├── game-over-screen.png      ← Écran Game Over
-├── level.png                 ← Décor du niveau
-│
-├── mario-*.png               ← Sprites de Mario
-├── DK_*.png / dk*.png        ← Sprites de Donkey Kong
-├── pauline-*.png             ← Sprites de Pauline
-├── barrel*.png               ← Sprites des tonneaux
-├── platform*.png             ← Sprites des plateformes
-└── ...                       ← Autres ressources graphiques
+└── assets/                   ← Toutes les ressources graphiques
+    ├── title-screen.png      ← Écran titre
+    ├── start.png             ← Écran de démarrage
+    ├── win-screen.png        ← Écran de victoire
+    ├── game-over-screen.png  ← Écran Game Over
+    ├── level.png             ← Décor du niveau
+    ├── mario-*.png           ← Sprites de Mario
+    ├── DK_*.png / dk*.png    ← Sprites de Donkey Kong
+    ├── pauline-*.png         ← Sprites de Pauline
+    ├── barrel*.png           ← Sprites des tonneaux
+    ├── platform*.png         ← Sprites des plateformes
+    └── ...                   ← Autres ressources
 ```
 
 ---
@@ -134,10 +118,10 @@ DonkeyKong/
 
 | Erreur | Solution |
 |---|---|
-| `ModuleNotFoundError: No module named 'pygame'` | Relance `pip3 install pygame` |
-| `FileNotFoundError: No such file or directory: 'level.png'` | Lance le jeu depuis le dossier `DonkeyKong/` |
-| Fenêtre noire au lancement | Vérifie que tous les fichiers `.png` sont bien présents |
-| Pygame installé mais jeu ne démarre pas | Essaie `python3 -m pygame.examples.aliens` pour tester |
+| `ModuleNotFoundError: No module named 'pygame'` | Relance `pip3 install -r requirements.txt` |
+| `FileNotFoundError: ... assets/...png` | Vérifie que le dossier `assets/` est bien présent à côté du `.py` |
+| Fenêtre noire au lancement | Vérifie que tous les fichiers dans `assets/` sont bien présents |
+| Pygame installé mais jeu ne démarre pas | Essaie `python3 -m pygame.examples.aliens` pour tester pygame |
 
 ---
 
