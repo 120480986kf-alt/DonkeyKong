@@ -599,11 +599,20 @@ peutDroite  = True
 while rejouer:
 
     pygame.init()
+    pygame.mixer.init()
 
     LARGEUR = 800
     HAUTEUR = 800
     ecran   = pygame.display.set_mode((LARGEUR, HAUTEUR))
     pygame.display.set_caption('Donkey Kong – Projet NSI 2025/2026')
+
+    # --- Musique de fond en boucle ---
+    try:
+        pygame.mixer.music.load(os.path.join("assets", "music.wav"))
+        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.play(-1)   # -1 = boucle infinie
+    except Exception:
+        pass   # Si le fichier est absent, le jeu continue sans musique
 
     enPartie = True
     print("Appuie sur ÉCHAP pour quitter.")
